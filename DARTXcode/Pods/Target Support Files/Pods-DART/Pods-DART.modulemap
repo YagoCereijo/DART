@@ -1,0 +1,6 @@
+framework module Pods_DART {
+  umbrella header "Pods-DART-umbrella.h"
+
+  export *
+  module * { export * }
+}
