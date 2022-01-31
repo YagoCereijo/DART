@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07004EFC27A5E726006C99AA /* AppIcon.svg in Resources */ = {isa = PBXBuildFile; fileRef = 07004EFB27A5E726006C99AA /* AppIcon.svg */; };
-		07004EFE27A6B4B1006C99AA /* LaunchScreen.svg in Resources */ = {isa = PBXBuildFile; fileRef = 07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */; };
 		072C8D26275A32C000B5E5E2 /* scorePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */; };
 		072C8D28275A32CE00B5E5E2 /* myModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */; };
 		0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */; };
@@ -25,8 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07004EFB27A5E726006C99AA /* AppIcon.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AppIcon.svg; path = ../../../../../Desktop/AppIcon.svg; sourceTree = "<group>"; };
-		07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LaunchScreen.svg; sourceTree = "<group>"; };
 		072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = scorePredictor.mlmodel; sourceTree = "<group>"; };
 		072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = myModel.mlmodel; sourceTree = "<group>"; };
 		0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NT Wagner.otf"; sourceTree = "<group>"; };
@@ -41,6 +37,7 @@
 		07C74950271DA8A0007F8A3F /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		07D11139271ED25300F34874 /* 501Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 501Controller.swift; sourceTree = "<group>"; };
 		07D1113B271EDBF300F34874 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		07EC6D0C27A7F18C006CB5BA /* AppIcon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppIcon.svg; sourceTree = "<group>"; };
 		0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DART.debug.xcconfig"; path = "Target Support Files/Pods-DART/Pods-DART.debug.xcconfig"; sourceTree = "<group>"; };
 		139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BAC68E8D99418CAAADFDCE /* Pods-DART.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DART.release.xcconfig"; path = "Target Support Files/Pods-DART/Pods-DART.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,23 +76,54 @@
 		07C74939271DA0BA007F8A3F /* DART */ = {
 			isa = PBXGroup;
 			children = (
-				07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */,
-				07004EFB27A5E726006C99AA /* AppIcon.svg */,
-				0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */,
-				072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */,
-				07C7493A271DA0BA007F8A3F /* AppDelegate.swift */,
-				07C7493C271DA0BA007F8A3F /* SceneDelegate.swift */,
-				07C7493E271DA0BA007F8A3F /* ViewController.swift */,
-				07C74940271DA0BA007F8A3F /* Main.storyboard */,
-				07C74943271DA0BB007F8A3F /* Assets.xcassets */,
-				07C74945271DA0BB007F8A3F /* LaunchScreen.storyboard */,
-				07C74948271DA0BB007F8A3F /* Info.plist */,
-				07C74950271DA8A0007F8A3F /* GameSettings.swift */,
-				07D11139271ED25300F34874 /* 501Controller.swift */,
+				07EC6D0827A7F15A006CB5BA /* Delegates */,
+				07EC6D0927A7F16E006CB5BA /* ViewControllers */,
 				07D1113B271EDBF300F34874 /* CameraController.swift */,
-				072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */,
+				07EC6D0A27A7F17D006CB5BA /* Storyboards */,
+				07EC6D0B27A7F18C006CB5BA /* Assets */,
+				07C74948271DA0BB007F8A3F /* Info.plist */,
 			);
 			path = DART;
+			sourceTree = "<group>";
+		};
+		07EC6D0827A7F15A006CB5BA /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				07C7493A271DA0BA007F8A3F /* AppDelegate.swift */,
+				07C7493C271DA0BA007F8A3F /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		07EC6D0927A7F16E006CB5BA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				07C7493E271DA0BA007F8A3F /* ViewController.swift */,
+				07C74950271DA8A0007F8A3F /* GameSettings.swift */,
+				07D11139271ED25300F34874 /* 501Controller.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		07EC6D0A27A7F17D006CB5BA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				07C74940271DA0BA007F8A3F /* Main.storyboard */,
+				07C74945271DA0BB007F8A3F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		07EC6D0B27A7F18C006CB5BA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				07C74943271DA0BB007F8A3F /* Assets.xcassets */,
+				07EC6D0C27A7F18C006CB5BA /* AppIcon.svg */,
+				072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */,
+				072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */,
+				0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		EBD8AA5A99932B9A5833CDC4 /* Pods */ = {
@@ -177,10 +205,8 @@
 			files = (
 				07C74947271DA0BB007F8A3F /* LaunchScreen.storyboard in Resources */,
 				07C74944271DA0BB007F8A3F /* Assets.xcassets in Resources */,
-				07004EFC27A5E726006C99AA /* AppIcon.svg in Resources */,
 				0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */,
 				07C74942271DA0BA007F8A3F /* Main.storyboard in Resources */,
-				07004EFE27A6B4B1006C99AA /* LaunchScreen.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
