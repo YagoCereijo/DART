@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07004EFC27A5E726006C99AA /* AppIcon.svg in Resources */ = {isa = PBXBuildFile; fileRef = 07004EFB27A5E726006C99AA /* AppIcon.svg */; };
+		07004EFE27A6B4B1006C99AA /* LaunchScreen.svg in Resources */ = {isa = PBXBuildFile; fileRef = 07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */; };
 		072C8D26275A32C000B5E5E2 /* scorePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */; };
 		072C8D28275A32CE00B5E5E2 /* myModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */; };
 		0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07004EFB27A5E726006C99AA /* AppIcon.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AppIcon.svg; path = ../../../../../Desktop/AppIcon.svg; sourceTree = "<group>"; };
+		07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LaunchScreen.svg; sourceTree = "<group>"; };
 		072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = scorePredictor.mlmodel; sourceTree = "<group>"; };
 		072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = myModel.mlmodel; sourceTree = "<group>"; };
 		0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NT Wagner.otf"; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		07C74939271DA0BA007F8A3F /* DART */ = {
 			isa = PBXGroup;
 			children = (
+				07004EFD27A6B4B1006C99AA /* LaunchScreen.svg */,
+				07004EFB27A5E726006C99AA /* AppIcon.svg */,
 				0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */,
 				072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */,
 				07C7493A271DA0BA007F8A3F /* AppDelegate.swift */,
@@ -171,8 +177,10 @@
 			files = (
 				07C74947271DA0BB007F8A3F /* LaunchScreen.storyboard in Resources */,
 				07C74944271DA0BB007F8A3F /* Assets.xcassets in Resources */,
+				07004EFC27A5E726006C99AA /* AppIcon.svg in Resources */,
 				0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */,
 				07C74942271DA0BA007F8A3F /* Main.storyboard in Resources */,
+				07004EFE27A6B4B1006C99AA /* LaunchScreen.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +386,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV95P3RCRA;
@@ -387,7 +397,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -408,7 +418,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93BAC68E8D99418CAAADFDCE /* Pods-DART.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LV95P3RCRA;
@@ -417,7 +429,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

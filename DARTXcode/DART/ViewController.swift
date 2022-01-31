@@ -17,20 +17,21 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
     let customRed = UIColor(cgColor: CGColor(red: 191/255, green: 25/255, blue: 50/255, alpha: 1))
     
 
-    let games = ["301", "501", "701", "Cricket", "Golf", "Loco", "301", "501", "701", "Cricket", "Golf", "Loco"]
+    let games = ["301", "501", "701", "Cricket", "Golf", "Loco"]
     
     let carousel = iCarousel()
-    let label = UILabel()
+    
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = lightBackground
+        view.backgroundColor = darkBackground
         
         carousel.type = .coverFlow
         carousel.dataSource = self
         carousel.delegate = self
-        carousel.backgroundColor = lightBackground
+        carousel.backgroundColor = customForeground
         carousel.translatesAutoresizingMaskIntoConstraints = false
         
         label.text = "\tDart"
@@ -43,8 +44,8 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
         view.addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
+            //label.topAnchor.constraint(equalTo: view.topAnchor),
+            label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.08),
             label.widthAnchor.constraint(equalTo: view.widthAnchor),
             label.bottomAnchor.constraint(equalTo: carousel.topAnchor),
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -112,6 +113,10 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
         UIView.transition(with: secondView, duration: 1.0, options: transitionOptions, animations: {
             nil
         })*/
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
