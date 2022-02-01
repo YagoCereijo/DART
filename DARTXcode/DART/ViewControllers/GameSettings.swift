@@ -17,10 +17,27 @@ class GameSettings: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func changePlayerNumber(_ sender: UIStepper) {
-        let count:Int = Int(sender.value)
-        playerNumber.text = "\(count)"
+    @IBAction func decrementPlayerNumber(_ sender: Any) {
+        let count:Int = Int(playerNumber.text!)!
+        if count > 1 { playerNumber.text = "\(count-1)" }
     }
+    
+    @IBAction func incrementPlayerNumber(_ sender: Any) {
+        let count:Int = Int(playerNumber.text!)!
+        if count < 6 { playerNumber.text = "\(count+1)" }
+    }
+    
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "01" {
+            let view = segue.destination as! Controller01
+            view.numberOfPlayers = Int(playerNumber.text!)!
+        }
+    }
+    
     
     
 }

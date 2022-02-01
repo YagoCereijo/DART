@@ -55,6 +55,7 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
         ])
     }
     
+    // MARK: CAROUSEL SETUP
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         
@@ -101,6 +102,19 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
         games.count
     }
     
+    // MARK: ¿¿¿Shall I use prepare or can I make the setup here???
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        
+        //Future idea: Name the segue after the name of the game
+        //so it is possible to code all within a single line and not
+        //crowd all the code with an infinite switch statement
+        //something similar to -> performSegue(withIdentifier: carousel[index].label.text, sender: nil)
+        
+        performSegue(withIdentifier: "GameSettingsSegue", sender: nil)
+    }
+    
+    // MARK: FLIP ANIMATION
+    
     @objc func showGameInfo(sender: UIButton){
         
         let card = sender.superview!
@@ -109,14 +123,16 @@ class ViewController: UIViewController, iCarouselDataSource, iCarouselDelegate {
 
         UIView.transition(with: card, duration: 1.0, options: transitionOptions, animations: nil)
 
-        /*
-        UIView.transition(with: secondView, duration: 1.0, options: transitionOptions, animations: {
-            nil
-        })*/
+        // MARK: Add info on the other side
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+        
+    }
+
 }
 

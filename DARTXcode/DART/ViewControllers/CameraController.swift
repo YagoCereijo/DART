@@ -8,12 +8,14 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     private let photoOutput = AVCapturePhotoOutput()
     
     // MARK: - Vision Properties
+    
     var request: VNCoreMLRequest?
     var visionModel: VNCoreMLModel?
     var imageView:UIImageView?
     
     @IBOutlet weak var videoPreviewContainer: UIView!
     @IBOutlet weak var rectangleContainer: UIView!
+    
     var rectangleList: [UIButton] = []
     
     override func viewDidLoad() {
@@ -23,67 +25,67 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     private func openCamera() {
-            switch AVCaptureDevice.authorizationStatus(for: .video) {
-            case .authorized: // the user has already authorized to access the camera.
-                self.setupCaptureSession()
-                
-            case .notDetermined: // the user has not yet asked for camera access.
-                AVCaptureDevice.requestAccess(for: .video) { (granted) in
-                    if granted { // if user has granted to access the camera.
-                        print("the user has granted to access the camera")
-                        DispatchQueue.main.async {
-                            self.setupCaptureSession()
-                        }
-                    } else {
-                        print("the user has not granted to access the camera")
-                        self.handleDismiss()
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized: // the user has already authorized to access the camera.
+            self.setupCaptureSession()
+            
+        case .notDetermined: // the user has not yet asked for camera access.
+            AVCaptureDevice.requestAccess(for: .video) { (granted) in
+                if granted { // if user has granted to access the camera.
+                    print("the user has granted to access the camera")
+                    DispatchQueue.main.async {
+                        self.setupCaptureSession()
                     }
+                } else {
+                    print("the user has not granted to access the camera")
+                    self.handleDismiss()
                 }
-                
-            case .denied:
-                print("the user has denied previously to access the camera.")
-                self.handleDismiss()
-                
-            case .restricted:
-                print("the user can't give camera access due to some restriction.")
-                self.handleDismiss()
-                
-            default:
-                print("something has wrong due to we can't access the camera.")
-                self.handleDismiss()
             }
+            
+        case .denied:
+            print("the user has denied previously to access the camera.")
+            self.handleDismiss()
+            
+        case .restricted:
+            print("the user can't give camera access due to some restriction.")
+            self.handleDismiss()
+            
+        default:
+            print("something has wrong due to we can't access the camera.")
+            self.handleDismiss()
         }
+    }
+    
     @objc private func handleDismiss() {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-            }
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
         }
+    }
         
     
     private func setupCaptureSession() {
-            let captureSession = AVCaptureSession()
-            
-            if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
-                do {
-                    let input = try AVCaptureDeviceInput(device: captureDevice)
-                    if captureSession.canAddInput(input) {
-                        captureSession.addInput(input)
-                    }
-                } catch let error {
-                    print("Failed to set input device with error: \(error)")
+        let captureSession = AVCaptureSession()
+        
+        if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
+            do {
+                let input = try AVCaptureDeviceInput(device: captureDevice)
+                if captureSession.canAddInput(input) {
+                    captureSession.addInput(input)
                 }
-                
-                if captureSession.canAddOutput(photoOutput) {
-                    captureSession.addOutput(photoOutput)
-                }
-                
-                let cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                cameraLayer.frame = CGRect(x: 0, y: 0, width: 414, height: 414)
-                print(cameraLayer.frame)
-                cameraLayer.videoGravity = .resizeAspectFill
-                videoPreviewContainer.layer.addSublayer(cameraLayer)
-                captureSession.startRunning()
+            } catch let error {
+                print("Failed to set input device with error: \(error)")
             }
+            
+            if captureSession.canAddOutput(photoOutput) {
+                captureSession.addOutput(photoOutput)
+            }
+            
+            let cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            cameraLayer.frame = CGRect(x: 0, y: 0, width: 414, height: 414)
+            cameraLayer.videoGravity = .resizeAspectFill
+            videoPreviewContainer.layer.addSublayer(cameraLayer)
+            captureSession.startRunning()
+        }
     }
     
     @IBAction func capturePhoto(_ sender: Any) {
