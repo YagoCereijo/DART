@@ -103,49 +103,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D904A061-80F3-4F65-BB54-9326F0275052"
+            uuid = "15751226-E7D1-4929-A9E4-B20B12506288"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DART/ViewControllers/CameraController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "photoOutput(_:didFinishProcessingPhoto:error:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D904A061-80F3-4F65-BB54-9326F0275052 - 4ec6cc7c755acba2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DART.CameraController.photoOutput(_: __C.AVCapturePhotoOutput, didFinishProcessingPhoto: __C.AVCapturePhoto, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
-                  moduleName = "DART"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yago/Documents/GitHub/DART/DARTXcode/DART/ViewControllers/CameraController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "140">
-               </Location>
-               <Location
-                  uuid = "D904A061-80F3-4F65-BB54-9326F0275052 - 4ec6cc7c755acba2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DART.CameraController.photoOutput(_: __C.AVCapturePhotoOutput, didFinishProcessingPhoto: __C.AVCapturePhoto, error: Swift.Optional&lt;Swift.Error&gt;) -&gt; ()"
-                  moduleName = "DART"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yago/Documents/GitHub/DART/DARTXcode/DART/ViewControllers/CameraController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "180">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

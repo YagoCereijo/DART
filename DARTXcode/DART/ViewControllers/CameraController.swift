@@ -7,28 +7,21 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     //Create the capture session
     @IBOutlet weak var CameraCapturePreview: UIView!
-    @IBOutlet weak var ReloadButton: UIButton!
     
     let captureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
-    let circleLayer = CALayer()
-    var imageView = UIImageView()
-    var cameraLayer:AVCaptureVideoPreviewLayer!
+    let imageView = UIImageView()
     
+    var cameraLayer:AVCaptureVideoPreviewLayer!
     var rectangleList: [UIButton] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         CameraCapturePreview.addSubview(imageView)
-        imageView.isHidden = true
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: CameraCapturePreview.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: CameraCapturePreview.bottomAnchor),
-            imageView.leadingAnchor.constraint(equalTo: CameraCapturePreview.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: CameraCapturePreview.trailingAnchor)
-        ])
+        let size: CGFloat = (self.view.frame.width-20)
+        imageView.frame = CGRect(x: 10, y: 50, width: size, height: size)
+        imageView.layer.cornerRadius = size/2
+        imageView.clipsToBounds = true
         checkCameraPermission()
     }
     
@@ -61,19 +54,31 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
             
             cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            let blureffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
+            let blurredEffectView = UIVisualEffectView(effect: blureffect)
+            blurredEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.height)
             
             CameraCapturePreview.layer.addSublayer(cameraLayer)
-            CameraCapturePreview.layer.addSublayer(circleLayer)
+            CameraCapturePreview.addSubview(blurredEffectView)
+        
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.width)
+            // Create the frame for the circle.
+            let size: CGFloat = (self.view.frame.width-20)
+            // Rectangle in which circle will be drawn
+            let rect = CGRect(x: 10, y: 50, width: size, height: size)
+            let circlePath = UIBezierPath(ovalIn: rect)
+            // Create a path
+            let path = UIBezierPath(rect: view.bounds)
+            // Append additional path which will create a circle
+            path.append(circlePath)
+            // Setup the fill rule to EvenOdd to properly mask the specified area and make a crater
+            maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+            // Append the circle to the path so that it is subtracted.
+            maskLayer.path = path.cgPath
+            blurredEffectView.layer.mask = maskLayer
             
-            circleLayer.frame = CGRect(x: 40,
-                                       y: 40,
-                                       width: self.view.frame.width-80,
-                                       height: self.view.frame.width-80)
-            circleLayer.borderColor = UIColor.lightGray.cgColor
-            circleLayer.borderWidth = 2
-            circleLayer.cornerRadius = (self.view.frame.width-80)/2
-            
-            cameraLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.width)
+            cameraLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.height)
             cameraLayer.videoGravity = .resizeAspectFill
             captureSession.startRunning()
         }
@@ -85,7 +90,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
             photoOutput.capturePhoto(with: photoSettings, delegate: self)
         }
-        ReloadButton.isHidden = false
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
@@ -93,22 +97,19 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let imageData = photo.fileDataRepresentation()!
         let image = UIImage(data: imageData)!
         let cropImage = cropToPreviewLayer(originalImage: image)!
-        imageView.isHidden = false
         imageView.image = cropImage
-        modelPredict(cropImage.cgImage!)
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
+        modelPredict(cropImage.cgImage!)
     }
     
     private func cropToPreviewLayer(originalImage: UIImage) -> UIImage? {
         
         guard let cgImage = originalImage.cgImage else { return nil }
         // MARK: Check how to properly access that CGRect that should be one of the circleLayerProperties
-        let outputRect = cameraLayer.metadataOutputRectConverted(fromLayerRect: CGRect(x: 40,
-                                                                                       y: 40,
-                                                                                       width: self.view.frame.width-80,
-                                                                                       height: self.view.frame.width-80))
+        let outputRect = cameraLayer.metadataOutputRectConverted(fromLayerRect: CGRect(x: 10,
+                                                                                       y: 50,
+                                                                                       width: self.view.frame.width-20,
+                                                                                       height: self.view.frame.width-20))
 
         let width = CGFloat(cgImage.width)
         let height = CGFloat(cgImage.height)
@@ -168,8 +169,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.rectangleList = []
         let scorePredictorModel = scorePredictor()
         
-        let width:CGFloat = CameraCapturePreview.frame.width
-        let height:CGFloat = CameraCapturePreview.frame.height
+        let width:CGFloat = CameraCapturePreview.frame.width - 20
+        let height:CGFloat = CameraCapturePreview.frame.width - 20
         
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
@@ -178,7 +179,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             //print(objectObservation.boundingBox, objectObservation.confidence)
             //print(width as Any, height as Any)
             let c = objectObservation.boundingBox
-            let b = UIButton(frame:CGRect(x: c.minX * width, y: (1-c.maxY) * height, width: c.width * width, height: c.height * height))
+            let b = UIButton(frame:CGRect(x: (c.minX * width)+10, y: ((1-c.maxY) * height) + 50, width: c.width * width, height: c.height * height))
             b.layer.borderWidth = 2
             b.layer.cornerRadius = 5
             b.layer.borderColor = CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1)
@@ -192,7 +193,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
         
         for rectangle in rectangleList{
-            self.CameraCapturePreview.addSubview(rectangle)
+            CameraCapturePreview.addSubview(rectangle)
         }
     }
     
@@ -200,10 +201,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let resultName = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "1 D", "2 D", "3 D", "4 D", "5 D", "6 D", "7 D", "8 D", "9 D", "10 D", "11 D", "12 D", "13 D", "14 D", "15 D", "16 D", "17 D", "18 D", "19 D", "20 D","1 T", "2 T", "3 T", "4 T", "5 T", "6 T", "7 T", "8 T", "9 T", "10 T", "11 T", "12 T", "13 T", "14 T", "15 T", "16 T", "17 T", "18 T", "19 T", "20 T","bullseye", "double bullseye"]
         
         return resultName[x]
-    }
-    
-    @IBAction func Reload(_ sender: Any) {
-        imageView.isHidden = true
     }
     
     
