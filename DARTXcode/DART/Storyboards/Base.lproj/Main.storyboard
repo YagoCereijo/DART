@@ -346,16 +346,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-Xw-u3U">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="83.5" width="375" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Sxz-Xw-u3U" secondAttribute="height" multiplier="1:1" id="WGP-oY-tfu"/>
                                 </constraints>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Tp-zt-mgy">
-                                <rect key="frame" x="0.0" y="51" width="375" height="273"/>
-                                <connections>
-                                    <segue destination="RMb-IA-ck9" kind="embed" id="EVK-xw-jhz"/>
-                                </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W45-fi-uUW">
                                 <rect key="frame" x="159.5" y="550" width="56" height="56.5"/>
@@ -370,62 +364,82 @@
                                     <color key="baseBackgroundColor" red="0.69803923369999998" green="0.1843137443" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="capturePhoto:" destination="qVc-kH-ag5" eventType="touchUpInside" id="Add-Ru-A1l"/>
+                                    <action selector="TakePhoto:" destination="qVc-kH-ag5" eventType="touchUpInside" id="Kop-t4-urT"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0f-cI-dfm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAR-tR-uF3">
+                                        <rect key="frame" x="20" y="16" width="16.5" height="16.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="oAR-tR-uF3" secondAttribute="height" multiplier="1:1" id="CCW-A9-tKm"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Back">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="11" weight="heavy"/>
+                                            <fontDescription key="titleFontDescription" name="NTWagner" family="NT Wagner" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.89019608500000003" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="sTv-hK-Z6d" kind="unwind" unwindAction="unwind:" id="Fen-LQ-Ygs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3r-OJ-fbk">
+                                        <rect key="frame" x="320" y="8.5" width="47" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="gobackward" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="15" weight="bold"/>
+                                            <color key="baseForegroundColor" red="0.89019608500000003" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="self.isHidden" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="Reload:" destination="qVc-kH-ag5" eventType="touchUpInside" id="sN0-eN-XE1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686275059999999" green="0.14509806040000001" blue="0.13333332540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="h3r-OJ-fbk" firstAttribute="centerY" secondItem="oAR-tR-uF3" secondAttribute="centerY" id="AIf-HY-mXN"/>
+                                    <constraint firstItem="oAR-tR-uF3" firstAttribute="height" secondItem="s0f-cI-dfm" secondAttribute="height" multiplier="0.2" id="ChM-EA-lvd"/>
+                                    <constraint firstItem="oAR-tR-uF3" firstAttribute="leading" secondItem="s0f-cI-dfm" secondAttribute="leading" constant="20" symbolic="YES" id="M4P-Ue-wK3"/>
+                                    <constraint firstAttribute="trailing" secondItem="h3r-OJ-fbk" secondAttribute="trailing" constant="8" id="YQP-Iy-IWZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IQR-0k-On6"/>
                         <color key="backgroundColor" red="0.89411771299999998" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Sxz-Xw-u3U" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="0aP-a7-a17"/>
-                            <constraint firstItem="3Tp-zt-mgy" firstAttribute="height" secondItem="Sxz-Xw-u3U" secondAttribute="height" multiplier="0.728" id="5ki-lK-PMu"/>
                             <constraint firstItem="IQR-0k-On6" firstAttribute="bottom" secondItem="W45-fi-uUW" secondAttribute="bottom" multiplier="1.1" id="Ac1-Yu-HOb"/>
-                            <constraint firstItem="3Tp-zt-mgy" firstAttribute="centerX" secondItem="Sxz-Xw-u3U" secondAttribute="centerX" id="CF7-2f-Hxg"/>
-                            <constraint firstItem="3Tp-zt-mgy" firstAttribute="centerY" secondItem="Sxz-Xw-u3U" secondAttribute="centerY" id="HHe-5T-RHZ"/>
+                            <constraint firstItem="Sxz-Xw-u3U" firstAttribute="top" secondItem="s0f-cI-dfm" secondAttribute="bottom" id="GD7-Ue-e8p"/>
                             <constraint firstItem="W45-fi-uUW" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="Jle-bp-7Ji"/>
                             <constraint firstItem="Sxz-Xw-u3U" firstAttribute="width" secondItem="IQR-0k-On6" secondAttribute="width" id="JqQ-nc-XbJ"/>
-                            <constraint firstItem="3Tp-zt-mgy" firstAttribute="width" secondItem="Sxz-Xw-u3U" secondAttribute="width" id="MaO-hj-ukq"/>
-                            <constraint firstItem="Sxz-Xw-u3U" firstAttribute="top" secondItem="IQR-0k-On6" secondAttribute="top" id="fFp-Z9-jr6"/>
+                            <constraint firstItem="s0f-cI-dfm" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="QA2-kO-uTZ"/>
+                            <constraint firstItem="oAR-tR-uF3" firstAttribute="top" secondItem="IQR-0k-On6" secondAttribute="top" constant="16" id="gb1-x5-Yml"/>
                             <constraint firstItem="W45-fi-uUW" firstAttribute="width" secondItem="3YT-aR-xZK" secondAttribute="width" multiplier="0.15" id="oF0-E1-X0z"/>
+                            <constraint firstItem="s0f-cI-dfm" firstAttribute="top" secondItem="3YT-aR-xZK" secondAttribute="top" id="pJM-dD-J6f"/>
+                            <constraint firstItem="s0f-cI-dfm" firstAttribute="height" secondItem="IQR-0k-On6" secondAttribute="height" multiplier="0.125" id="wR9-bx-zE0"/>
+                            <constraint firstItem="s0f-cI-dfm" firstAttribute="width" secondItem="IQR-0k-On6" secondAttribute="width" id="xkU-HZ-4un"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yhs-Hq-ZwC"/>
                     <connections>
-                        <outlet property="rectangleContainer" destination="3Tp-zt-mgy" id="ukY-fI-tEI"/>
-                        <outlet property="videoPreviewContainer" destination="Sxz-Xw-u3U" id="jy9-Ga-bW6"/>
+                        <outlet property="CameraCapturePreview" destination="Sxz-Xw-u3U" id="DEV-gN-bkE"/>
+                        <outlet property="ReloadButton" destination="h3r-OJ-fbk" id="hns-JN-6lu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQo-2a-S3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="sTv-hK-Z6d" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2430" y="104"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="48g-EN-hfi">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dfl-ye-bjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="RMb-IA-ck9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WcK-U5-ddc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jBU-WU-hAL">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="dXx-N2-oUC"/>
-                        <constraints>
-                            <constraint firstItem="jBU-WU-hAL" firstAttribute="centerX" secondItem="dXx-N2-oUC" secondAttribute="centerX" id="4h5-gZ-OU3"/>
-                            <constraint firstItem="jBU-WU-hAL" firstAttribute="height" secondItem="dXx-N2-oUC" secondAttribute="height" id="JKa-AI-Psf"/>
-                            <constraint firstItem="jBU-WU-hAL" firstAttribute="centerY" secondItem="dXx-N2-oUC" secondAttribute="centerY" id="a01-Lw-sxj"/>
-                            <constraint firstItem="jBU-WU-hAL" firstAttribute="width" secondItem="dXx-N2-oUC" secondAttribute="width" id="zLZ-2F-4L5"/>
-                        </constraints>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="3366" y="104"/>
+            <point key="canvasLocation" x="2429.5999999999999" y="103.89805097451276"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="gobackward" catalog="system" width="121" height="128"/>
         <image name="minus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">

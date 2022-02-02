@@ -27,10 +27,6 @@ class GameSettings: UIViewController {
         if count < 6 { playerNumber.text = "\(count+1)" }
     }
     
-    @IBAction func unwind( _ seg: UIStoryboardSegue) {
-        self.dismiss(animated: false, completion: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "01" {
             let view = segue.destination as! Controller01

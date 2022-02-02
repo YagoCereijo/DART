@@ -5,67 +5,47 @@ import CoreML
 
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-    private let photoOutput = AVCapturePhotoOutput()
+    //Create the capture session
+    @IBOutlet weak var CameraCapturePreview: UIView!
+    @IBOutlet weak var ReloadButton: UIButton!
     
-    // MARK: - Vision Properties
-    
-    var request: VNCoreMLRequest?
-    var visionModel: VNCoreMLModel?
-    var imageView:UIImageView?
-    
-    @IBOutlet weak var videoPreviewContainer: UIView!
-    @IBOutlet weak var rectangleContainer: UIView!
+    let captureSession = AVCaptureSession()
+    let photoOutput = AVCapturePhotoOutput()
+    let circleLayer = CALayer()
+    var imageView = UIImageView()
+    var cameraLayer:AVCaptureVideoPreviewLayer!
     
     var rectangleList: [UIButton] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView = (rectangleContainer.viewWithTag(2) as? UIImageView)
-        openCamera()
+        
+        CameraCapturePreview.addSubview(imageView)
+        imageView.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: CameraCapturePreview.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: CameraCapturePreview.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: CameraCapturePreview.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: CameraCapturePreview.trailingAnchor)
+        ])
+        checkCameraPermission()
     }
     
-    private func openCamera() {
+    private func checkCameraPermission() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized: // the user has already authorized to access the camera.
-            self.setupCaptureSession()
-            
-        case .notDetermined: // the user has not yet asked for camera access.
+        case .authorized: self.setupCaptureSession()
+        case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { (granted) in
-                if granted { // if user has granted to access the camera.
-                    print("the user has granted to access the camera")
-                    DispatchQueue.main.async {
-                        self.setupCaptureSession()
-                    }
-                } else {
-                    print("the user has not granted to access the camera")
-                    self.handleDismiss()
-                }
+                if granted { DispatchQueue.main.async { self.setupCaptureSession()}}
             }
-            
-        case .denied:
-            print("the user has denied previously to access the camera.")
-            self.handleDismiss()
-            
-        case .restricted:
-            print("the user can't give camera access due to some restriction.")
-            self.handleDismiss()
-            
-        default:
-            print("something has wrong due to we can't access the camera.")
-            self.handleDismiss()
+        case .denied: dismiss(animated: false)
+        case .restricted: dismiss(animated: false)
+        default: dismiss(animated: false)
         }
     }
     
-    @objc private func handleDismiss() {
-        DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-        
-    
-    private func setupCaptureSession() {
-        let captureSession = AVCaptureSession()
-        
+    func setupCaptureSession(){
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             do {
                 let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -80,29 +60,73 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
                 captureSession.addOutput(photoOutput)
             }
             
-            let cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            cameraLayer.frame = CGRect(x: 0, y: 0, width: 414, height: 414)
+            cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+            
+            CameraCapturePreview.layer.addSublayer(cameraLayer)
+            CameraCapturePreview.layer.addSublayer(circleLayer)
+            
+            circleLayer.frame = CGRect(x: 40,
+                                       y: 40,
+                                       width: self.view.frame.width-80,
+                                       height: self.view.frame.width-80)
+            circleLayer.borderColor = UIColor.lightGray.cgColor
+            circleLayer.borderWidth = 2
+            circleLayer.cornerRadius = (self.view.frame.width-80)/2
+            
+            cameraLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.width)
             cameraLayer.videoGravity = .resizeAspectFill
-            videoPreviewContainer.layer.addSublayer(cameraLayer)
             captureSession.startRunning()
         }
     }
     
-    @IBAction func capturePhoto(_ sender: Any) {
+    @IBAction func TakePhoto(_ sender: Any) {
         let photoSettings = AVCapturePhotoSettings()
-        print("capture photo")
-        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
+            photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
+            photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        }
+        ReloadButton.isHidden = false
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
-        guard let imageCG = photo.cgImageRepresentation() else { return }
+        let imageData = photo.fileDataRepresentation()!
+        let image = UIImage(data: imageData)!
+        let cropImage = cropToPreviewLayer(originalImage: image)!
+        imageView.isHidden = false
+        imageView.image = cropImage
+        modelPredict(cropImage.cgImage!)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let cropZone = CGRect(x: imageCG.width/4-60, y: 0, width: imageCG.height, height: imageCG.height)
-        guard let cropImage = imageCG.cropping(to: cropZone) else { return }
-        let imageUI = UIImage(cgImage: cropImage, scale: 1.0, orientation: .right)
-        imageView!.image = imageUI
+    }
+    
+    private func cropToPreviewLayer(originalImage: UIImage) -> UIImage? {
         
+        guard let cgImage = originalImage.cgImage else { return nil }
+        // MARK: Check how to properly access that CGRect that should be one of the circleLayerProperties
+        let outputRect = cameraLayer.metadataOutputRectConverted(fromLayerRect: CGRect(x: 40,
+                                                                                       y: 40,
+                                                                                       width: self.view.frame.width-80,
+                                                                                       height: self.view.frame.width-80))
+
+        let width = CGFloat(cgImage.width)
+        let height = CGFloat(cgImage.height)
+        
+        let cropRect = CGRect(x: outputRect.origin.x * width,
+                              y: outputRect.origin.y * height,
+                              width: outputRect.size.width * width,
+                              height: outputRect.size.height * height)
+         
+
+        if let croppedCGImage = cgImage.cropping(to: cropRect) {
+            return UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: originalImage.imageOrientation)
+        }
+
+        return nil
+    }
+    
+    func modelPredict(_ image: CGImage){
         let defaultConfig = MLModelConfiguration()
         let dartModel = try? myModel(configuration: defaultConfig)
         let dartVNModel:VNCoreMLModel
@@ -114,18 +138,17 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
         
         var requests : [VNRequest] = []
-        let imageRequest = VNImageRequestHandler(cgImage: cropImage, orientation: .right)
+        let imageRequest = VNImageRequestHandler(cgImage: image, orientation: .right)
         
         let dartDetectionRequest = VNCoreMLRequest(model: dartVNModel, completionHandler: { (request, error) in
             DispatchQueue.main.async(execute: {
                 // perform all the UI updates on the main queue
                 if let results = request.results {
-                    //print(results)
+                    print(results)
                     self.drawRects(results)
                 }
             })
         })
-        
         
         requests.append(dartDetectionRequest)
         DispatchQueue.global(qos: .userInitiated).async {
@@ -138,16 +161,16 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    func drawRects(_ results: [Any]){
-        
+    func drawRects(_ results: [VNObservation]){
         for rectangle in rectangleList{
             rectangle.removeFromSuperview()
         }
         self.rectangleList = []
         let scorePredictorModel = scorePredictor()
         
-        let width:CGFloat = rectangleContainer.frame.width
-        let height:CGFloat = rectangleContainer.frame.height
+        let width:CGFloat = CameraCapturePreview.frame.width
+        let height:CGFloat = CameraCapturePreview.frame.height
+        
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
                 continue
@@ -158,17 +181,18 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             let b = UIButton(frame:CGRect(x: c.minX * width, y: (1-c.maxY) * height, width: c.width * width, height: c.height * height))
             b.layer.borderWidth = 2
             b.layer.cornerRadius = 5
-            b.layer.borderColor = UIColor.systemBlue.cgColor
+            b.layer.borderColor = CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1)
            // b.translatesAutoresizingMaskIntoConstraints = false
             self.rectangleList.append(b)
             let result = try? scorePredictorModel.prediction(x: c.midX, y: 1-c.midY, width: c.width, height: c.height)
             guard let namePosition = result?.result else{return}
             b.setTitle(resultPrint(x: Int(namePosition)),for: .normal)
-            b.setTitleColor(.systemBlue, for: .normal)
+            b.setTitleColor(UIColor(cgColor: CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1)), for: .normal)
+            b.titleLabel?.font = UIFont(name: "WTWagner", size: 15)
         }
         
         for rectangle in rectangleList{
-            self.rectangleContainer.addSubview(rectangle)
+            self.CameraCapturePreview.addSubview(rectangle)
         }
     }
     
@@ -177,5 +201,11 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         return resultName[x]
     }
-}
     
+    @IBAction func Reload(_ sender: Any) {
+        imageView.isHidden = true
+    }
+    
+    
+    
+}
