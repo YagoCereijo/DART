@@ -17,9 +17,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CameraCapturePreview.addSubview(imageView)
-        let size: CGFloat = (self.view.frame.width-20)
-        imageView.frame = CGRect(x: 10, y: 50, width: size, height: size)
+        let size: CGFloat = (self.view.frame.width*0.9-20)
+        imageView.frame = CGRect(x: 10, y: 10, width: size, height: size)
         imageView.layer.cornerRadius = size/2
         imageView.clipsToBounds = true
         checkCameraPermission()
@@ -54,19 +53,24 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
             
             cameraLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            let blureffect = UIBlurEffect(style: .systemUltraThinMaterialLight)
-            let blurredEffectView = UIVisualEffectView(effect: blureffect)
-            blurredEffectView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.height)
+            cameraLayer.cornerRadius = 10
+            
+            let layer = CAShapeLayer()
+            layer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.9 , height: self.view.frame.width * 0.9)
+            layer.backgroundColor = CGColor(red: 45/255, green: 41/255, blue: 38/255, alpha: 0.9)
+            layer.cornerRadius = 10
+            
             
             CameraCapturePreview.layer.addSublayer(cameraLayer)
-            CameraCapturePreview.addSubview(blurredEffectView)
+            CameraCapturePreview.layer.addSublayer(layer)
+            CameraCapturePreview.addSubview(imageView)
         
             let maskLayer = CAShapeLayer()
-            maskLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.width)
+            maskLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.9 , height: self.view.frame.width * 0.9)
             // Create the frame for the circle.
-            let size: CGFloat = (self.view.frame.width-20)
+            let size: CGFloat = (self.view.frame.width * 0.9 - 20)
             // Rectangle in which circle will be drawn
-            let rect = CGRect(x: 10, y: 50, width: size, height: size)
+            let rect = CGRect(x: 10, y: 10, width: size, height: size)
             let circlePath = UIBezierPath(ovalIn: rect)
             // Create a path
             let path = UIBezierPath(rect: view.bounds)
@@ -76,9 +80,9 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
             // Append the circle to the path so that it is subtracted.
             maskLayer.path = path.cgPath
-            blurredEffectView.layer.mask = maskLayer
+            layer.mask = maskLayer
             
-            cameraLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width , height: self.view.frame.height)
+            cameraLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.9 , height: self.view.frame.width * 0.9)
             cameraLayer.videoGravity = .resizeAspectFill
             captureSession.startRunning()
         }
@@ -107,9 +111,9 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         guard let cgImage = originalImage.cgImage else { return nil }
         // MARK: Check how to properly access that CGRect that should be one of the circleLayerProperties
         let outputRect = cameraLayer.metadataOutputRectConverted(fromLayerRect: CGRect(x: 10,
-                                                                                       y: 50,
-                                                                                       width: self.view.frame.width-20,
-                                                                                       height: self.view.frame.width-20))
+                                                                                       y: 10,
+                                                                                       width: self.view.frame.width * 0.9 - 20,
+                                                                                       height: self.view.frame.width * 0.9 - 20))
 
         let width = CGFloat(cgImage.width)
         let height = CGFloat(cgImage.height)
@@ -193,6 +197,9 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
         
         for rectangle in rectangleList{
+            let pan = UIPanGestureRecognizer(target: self,
+                                             action: #selector(panButton(pan:)))
+            rectangle.addGestureRecognizer(pan)
             CameraCapturePreview.addSubview(rectangle)
         }
     }
@@ -203,6 +210,17 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         return resultName[x]
     }
     
+    @objc func panButton(pan: UIPanGestureRecognizer) {
+        let button = pan.view as! UIButton
+        let location = pan.location(in: CameraCapturePreview) // get pan location
+        button.center = location // set button to where finger is
+    }
+    
+    
+    @IBAction func RemoveSamplePhoto(_ sender: Any) {
+        imageView.image = UIImage()
+        rectangleList.forEach{$0.removeFromSuperview()}
+    }
     
     
 }
