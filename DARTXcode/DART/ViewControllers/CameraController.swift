@@ -176,24 +176,34 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let width:CGFloat = CameraCapturePreview.frame.width - 20
         let height:CGFloat = CameraCapturePreview.frame.width - 20
         
-        for observation in results where observation is VNRecognizedObjectObservation {
-            guard let objectObservation = observation as? VNRecognizedObjectObservation else {
-                continue
-            }
-            //print(objectObservation.boundingBox, objectObservation.confidence)
-            //print(width as Any, height as Any)
-            let c = objectObservation.boundingBox
-            let b = UIButton(frame:CGRect(x: (c.minX * width)+10, y: ((1-c.maxY) * height) + 50, width: c.width * width, height: c.height * height))
-            b.layer.borderWidth = 2
-            b.layer.cornerRadius = 5
-            b.layer.borderColor = CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1)
-           // b.translatesAutoresizingMaskIntoConstraints = false
+        for observation in results {
+            
+            guard let objectObservation = observation as? VNRecognizedObjectObservation else {return}
+            
+            let dartFrame = objectObservation.boundingBox
+            
+            
+            let b = UIButton(frame: CGRect( x: (dartFrame.minX * width)+10,
+                                            y: ((1-dartFrame.maxY) * height) + 50,
+                                            width: 20,
+                                            height: 20))
+            
+            b.layer.cornerRadius = 10
+            b.backgroundColor = UIColor(cgColor: CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1))
+            
+            b.layer.borderWidth = 3
+            b.layer.borderColor = CGColor(red: 191/255, green: 25/255, blue: 50/255, alpha: 1)
+            
+        
             self.rectangleList.append(b)
-            let result = try? scorePredictorModel.prediction(x: c.midX, y: 1-c.midY, width: c.width, height: c.height)
-            guard let namePosition = result?.result else{return}
-            b.setTitle(resultPrint(x: Int(namePosition)),for: .normal)
-            b.setTitleColor(UIColor(cgColor: CGColor(red: 0, green: 148/255, blue: 115/255, alpha: 1)), for: .normal)
-            b.titleLabel?.font = UIFont(name: "WTWagner", size: 15)
+            
+            // MARK: Actual value result is kept here, will be used later
+            
+            let result = try? scorePredictorModel.prediction(x: dartFrame.midX,
+                                                             y: 1 - dartFrame.midY,
+                                                             width: dartFrame.width,
+                                                             height: dartFrame.height)
+            
         }
         
         for rectangle in rectangleList{
