@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0716B35727B5292200E52559 /* DartSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716B35627B5292200E52559 /* DartSelectorView.swift */; };
+		0716B35927B5294B00E52559 /* DartSelectorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716B35827B5294B00E52559 /* DartSelectorScene.swift */; };
 		072C8D26275A32C000B5E5E2 /* scorePredictor.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */; };
 		072C8D28275A32CE00B5E5E2 /* myModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */; };
 		0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0716B35627B5292200E52559 /* DartSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartSelectorView.swift; sourceTree = "<group>"; };
+		0716B35827B5294B00E52559 /* DartSelectorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartSelectorScene.swift; sourceTree = "<group>"; };
 		072C8D25275A32C000B5E5E2 /* scorePredictor.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = scorePredictor.mlmodel; sourceTree = "<group>"; };
 		072C8D27275A32CE00B5E5E2 /* myModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = myModel.mlmodel; sourceTree = "<group>"; };
 		0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NT Wagner.otf"; sourceTree = "<group>"; };
@@ -55,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0716B35A27B5295200E52559 /* DartSelector */ = {
+			isa = PBXGroup;
+			children = (
+				0716B35627B5292200E52559 /* DartSelectorView.swift */,
+				0716B35827B5294B00E52559 /* DartSelectorScene.swift */,
+			);
+			path = DartSelector;
+			sourceTree = "<group>";
+		};
 		07C7492E271DA0BA007F8A3F = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +94,7 @@
 				07EC6D0A27A7F17D006CB5BA /* Storyboards */,
 				07EC6D0B27A7F18C006CB5BA /* Assets */,
 				07C74948271DA0BB007F8A3F /* Info.plist */,
+				0716B35A27B5295200E52559 /* DartSelector */,
 			);
 			path = DART;
 			sourceTree = "<group>";
@@ -259,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0716B35727B5292200E52559 /* DartSelectorView.swift in Sources */,
 				072C8D26275A32C000B5E5E2 /* scorePredictor.mlmodel in Sources */,
+				0716B35927B5294B00E52559 /* DartSelectorScene.swift in Sources */,
 				07D1113A271ED25300F34874 /* Controller01.swift in Sources */,
 				07D1113C271EDBF400F34874 /* CameraController.swift in Sources */,
 				07C7493F271DA0BA007F8A3F /* ViewController.swift in Sources */,
