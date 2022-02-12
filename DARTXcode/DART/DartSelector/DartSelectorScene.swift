@@ -24,7 +24,7 @@ extension UIBezierPath {
 
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
     
     
     let red = UIColor(named: "red") ?? .red

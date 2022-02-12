@@ -2,6 +2,7 @@ import UIKit
 import AVFoundation
 import Vision
 import CoreML
+import SpriteKit
 
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
@@ -103,6 +104,12 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let cropImage = cropToPreviewLayer(originalImage: image)!
         imageView.image = cropImage
         imageView.contentMode = .scaleAspectFit
+        
+        let sceneView = SKView()
+        let scene = DartSelectorScene()
+        
+        CameraCapturePreview.addSubview(sceneView)
+        sceneView.presentScene(scene)
         modelPredict(cropImage.cgImage!)
     }
     
