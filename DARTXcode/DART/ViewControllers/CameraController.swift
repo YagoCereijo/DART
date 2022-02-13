@@ -31,10 +31,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    
-    
-    
-    
     func setupCaptureSession(){
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
             do {
@@ -85,24 +81,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     
-    
-    
-    
-    
-    
-    @IBAction func TakePhoto(_ sender: Any) {
-        let photoSettings = AVCapturePhotoSettings()
-        if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
-            photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
-            photoOutput.capturePhoto(with: photoSettings, delegate: self)
-        }
-    }
-    
-    
-    
-    
-    
-    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         let imageData = photo.fileDataRepresentation()!
@@ -110,9 +88,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let cropImage = cropToPreviewLayer(originalImage: image)!
         modelPredict(cropImage.cgImage!)
     }
-    
-    
-    
     
     private func cropToPreviewLayer(originalImage: UIImage) -> UIImage? {
         
@@ -138,9 +113,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
 
         return nil
     }
-    
-    
-    
     
     private func modelPredict(_ image: CGImage){
         
@@ -179,7 +151,6 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     //SceneView setup
                     self.sceneView = SKView()
-                    self.sceneView.showsPhysics = true
                     self.sceneView.ignoresSiblingOrder = true
                     self.sceneView.presentScene(scene)
                     self.sceneView.translatesAutoresizingMaskIntoConstraints = false
@@ -212,6 +183,15 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     @IBAction func RemoveSamplePhoto(_ sender: Any) {
         self.sceneView.removeFromSuperview()
     }
+    
+    @IBAction func TakePhoto(_ sender: Any) {
+        let photoSettings = AVCapturePhotoSettings()
+        if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
+            photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
+            photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        }
+    }
+
     
     
 }

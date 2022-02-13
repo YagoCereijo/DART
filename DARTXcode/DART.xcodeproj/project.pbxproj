@@ -21,6 +21,7 @@
 		07C74951271DA8A0007F8A3F /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C74950271DA8A0007F8A3F /* GameSettings.swift */; };
 		07D1113A271ED25300F34874 /* Controller01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D11139271ED25300F34874 /* Controller01.swift */; };
 		07D1113C271EDBF400F34874 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1113B271EDBF300F34874 /* CameraController.swift */; };
+		07DCD40A27B96B4100CC9B8D /* AddDartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCD40927B96B4100CC9B8D /* AddDartCell.swift */; };
 		5CBA7180DE54342AE46EF800 /* Pods_DART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		07C74950271DA8A0007F8A3F /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		07D11139271ED25300F34874 /* Controller01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller01.swift; sourceTree = "<group>"; };
 		07D1113B271EDBF300F34874 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		07DCD40927B96B4100CC9B8D /* AddDartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDartCell.swift; sourceTree = "<group>"; };
 		07EC6D0C27A7F18C006CB5BA /* AppIcon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppIcon.svg; sourceTree = "<group>"; };
 		0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DART.debug.xcconfig"; path = "Target Support Files/Pods-DART/Pods-DART.debug.xcconfig"; sourceTree = "<group>"; };
 		139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 			children = (
 				0750DBE527B928670028A6DD /* DartCell.swift */,
 				0716B35827B5294B00E52559 /* DartSelectorScene.swift */,
+				07DCD40927B96B4100CC9B8D /* AddDartCell.swift */,
 			);
 			path = DartSelector;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				0716B35927B5294B00E52559 /* DartSelectorScene.swift in Sources */,
 				07D1113A271ED25300F34874 /* Controller01.swift in Sources */,
 				07D1113C271EDBF400F34874 /* CameraController.swift in Sources */,
+				07DCD40A27B96B4100CC9B8D /* AddDartCell.swift in Sources */,
 				07C7493F271DA0BA007F8A3F /* ViewController.swift in Sources */,
 				07C74951271DA8A0007F8A3F /* GameSettings.swift in Sources */,
 				0750DBE627B928670028A6DD /* DartCell.swift in Sources */,

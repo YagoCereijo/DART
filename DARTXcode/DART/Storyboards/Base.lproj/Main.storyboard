@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -461,6 +462,41 @@
                                             <outlet property="result" destination="aDa-SJ-669" id="XGa-eF-7jn"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="AddDartCell" id="nxf-dN-Av6" customClass="AddDartCell" customModule="DART" customModuleProvider="target">
+                                        <rect key="frame" x="106.5" y="0.0" width="87" height="87"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="J7V-dx-rBk">
+                                            <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVc-lz-TkQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="">
+                                                        <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="large"/>
+                                                        <color key="baseForegroundColor" red="0.89411771299999998" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </buttonConfiguration>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AVc-lz-TkQ" firstAttribute="height" secondItem="J7V-dx-rBk" secondAttribute="height" id="7dg-5o-N77"/>
+                                                <constraint firstItem="AVc-lz-TkQ" firstAttribute="centerX" secondItem="J7V-dx-rBk" secondAttribute="centerX" id="ITj-hD-Og2"/>
+                                                <constraint firstItem="AVc-lz-TkQ" firstAttribute="centerY" secondItem="J7V-dx-rBk" secondAttribute="centerY" id="fM7-B7-UTs"/>
+                                                <constraint firstItem="AVc-lz-TkQ" firstAttribute="width" secondItem="J7V-dx-rBk" secondAttribute="width" id="g48-hC-0PY"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.1411764771" green="0.1294117719" blue="0.1215686351" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="customSize" width="87" height="87"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="button" destination="AVc-lz-TkQ" id="tfF-sM-OwK"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>
@@ -494,6 +530,7 @@
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="minus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="repeat" catalog="system" width="128" height="98"/>
         <systemColor name="systemBackgroundColor">

@@ -27,16 +27,6 @@ extension UIBezierPath {
 
 class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return results.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DartCell", for: indexPath) as! DartCell
-        cell.result.text = results[indexPath.row]
-        return cell
-    }
-    
     
     
     let red = UIColor(named: "red") ?? .red
@@ -59,6 +49,7 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDele
     public init(size: CGSize, results: [String], dartCollection: UICollectionView){
         if results.count > 3 {self.results = [String](results[0..<3])}
         else {self.results = results}
+        print(results)
         self.DartCollection = dartCollection
         super.init(size: size)
         self.DartCollection.delegate = self
@@ -180,19 +171,16 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDele
             let dart = SKSpriteNode(imageNamed: "dart")
             dart.name = "\(count)"
             count += 1
-            dart.physicsBody = SKPhysicsBody(circleOfRadius: 1, center: CGPoint(x: -dart.size.width/2, y: dart.size.height/2))
-            dart.anchorPoint = CGPoint(x: 0, y: 1)
+            dart.anchorPoint = CGPoint(x: 1, y: 0)
             dart.size = CGSize(width: size.width/7.5, height: size.height/7.5)
+            dart.physicsBody = SKPhysicsBody(circleOfRadius: 1, center: CGPoint(x: dart.frame.minX, y: dart.frame.maxY))
             dart.physicsBody?.affectedByGravity = false
             dart.physicsBody?.contactTestBitMask = 1
             dart.physicsBody?.collisionBitMask = 0
             darts.append(dart)
             let spawnNode = self.childNode(withName: $0)!
-            dart.position = CGPoint(x: spawnNode.frame.midX, y: spawnNode.frame.midY)
+            dart.position = CGPoint(x: spawnNode.frame.midX + dart.frame.width, y: spawnNode.frame.midY - dart.frame.height)
             self.addChild(dart)
-            // The following order should be performed one the dart has been fully added
-            // meanwhile it will be performed once the dart is tapped for the first time
-            //dart.anchorPoint = CGPoint(x: 1 , y: 0)
         }
         
         
@@ -207,7 +195,6 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDele
             for n in touchedNodes.reversed()  {
                 if ["21", "22", "23"].contains(n.name) {
                     selectedPicker = n as? SKSpriteNode
-                    selectedPicker?.anchorPoint = CGPoint(x: 1 , y: 0)
                 }
             }
         }
@@ -251,6 +238,43 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDele
             feedbackGenerator.impactOccurred()
             DartCollection.reloadData()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if results.count < 3 { return results.count+1 }
+        else { return results.count }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row < results.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DartCell", for: indexPath) as! DartCell
+            cell.result.text = results[indexPath.row]
+            return cell
+        } else if indexPath.row <= results.count{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddDartCell", for: indexPath) as! AddDartCell
+            cell.button.addTarget(self, action: #selector(addDart), for: .touchDown)
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
+    }
+    
+    @objc func addDart(){
+        results.append("20 T")
+        DartCollection.reloadData()
+        let dart = SKSpriteNode(imageNamed: "dart")
+        dart.name = "\(20+results.count)"
+        dart.anchorPoint = CGPoint(x: 1, y: 0)
+        dart.size = CGSize(width: size.width/7.5, height: size.height/7.5)
+        dart.physicsBody = SKPhysicsBody(circleOfRadius: 1, center: CGPoint(x: dart.frame.minX, y: dart.frame.maxY))
+        dart.physicsBody?.affectedByGravity = false
+        dart.physicsBody?.contactTestBitMask = 1
+        dart.physicsBody?.collisionBitMask = 0
+        darts.append(dart)
+        let spawnNode = self.childNode(withName: "20 T")!
+        dart.position = CGPoint(x: spawnNode.frame.midX + dart.frame.width, y: spawnNode.frame.midY - dart.frame.height)
+        self.addChild(dart)
+        
     }
 }
 
