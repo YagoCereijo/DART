@@ -25,7 +25,18 @@ extension UIBezierPath {
 
 }
 
-class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
+class DartSelectorScene: SKScene, SKPhysicsContactDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return results.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DartCell", for: indexPath) as! DartCell
+        cell.result.text = results[indexPath.row]
+        return cell
+    }
+    
     
     
     let red = UIColor(named: "red") ?? .red
@@ -43,11 +54,15 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
     var maxRadius:CGFloat!
     var darts:[SKSpriteNode] = []
     var results:[String]!
+    var DartCollection:UICollectionView
     
-    public init(size: CGSize, results: [String]){
-        self.results = results
-        print(results)
+    public init(size: CGSize, results: [String], dartCollection: UICollectionView){
+        if results.count > 3 {self.results = [String](results[0..<3])}
+        else {self.results = results}
+        self.DartCollection = dartCollection
         super.init(size: size)
+        self.DartCollection.delegate = self
+        self.DartCollection.dataSource = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -160,12 +175,14 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
         doubleBullseye.physicsBody?.collisionBitMask = 0
         self.addChild(doubleBullseye)
         
+        var count = 21
         self.results?.forEach{
             let dart = SKSpriteNode(imageNamed: "dart")
-            dart.name = "dart"
+            dart.name = "\(count)"
+            count += 1
+            dart.physicsBody = SKPhysicsBody(circleOfRadius: 1, center: CGPoint(x: -dart.size.width/2, y: dart.size.height/2))
             dart.anchorPoint = CGPoint(x: 0, y: 1)
             dart.size = CGSize(width: size.width/7.5, height: size.height/7.5)
-            dart.physicsBody = SKPhysicsBody(circleOfRadius: 1, center: CGPoint(x: -dart.size.width/2, y: dart.size.height/2))
             dart.physicsBody?.affectedByGravity = false
             dart.physicsBody?.contactTestBitMask = 1
             dart.physicsBody?.collisionBitMask = 0
@@ -188,7 +205,7 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
             
             let touchedNodes = self.nodes(at: location)
             for n in touchedNodes.reversed()  {
-                if n.name == "dart" {
+                if ["21", "22", "23"].contains(n.name) {
                     selectedPicker = n as? SKSpriteNode
                     selectedPicker?.anchorPoint = CGPoint(x: 1 , y: 0)
                 }
@@ -212,10 +229,11 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        
-        if (contact.bodyB.node?.name == "dart") {
+        let name = contact.bodyB.node?.name ?? "out"
+        if ["21", "22", "23"].contains(name) {
             let allContactBodies = contact.bodyB.allContactedBodies()
-            //score.text = allContactBodies.first?.node?.name
+            results[Int(name)!-21] = allContactBodies.first?.node?.name ?? "out"
+            DartCollection.reloadData()
         }
         
         
@@ -223,14 +241,15 @@ class DartSelectorScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         
+        let name = contact.bodyB.node?.name ?? "out"
         let feedbackGenerator = UIImpactFeedbackGenerator()
         
-        if (contact.bodyB.node?.name == "dart") {
+        if ["21", "22", "23"].contains(name) {
             let allContactBodies = contact.bodyB.allContactedBodies()
+            results[Int(name)!-21] = allContactBodies.first?.node?.name ?? "out"
             feedbackGenerator.prepare()
-            //score.text = allContactBodies.first?.node?.name
             feedbackGenerator.impactOccurred()
-            //score.text = "end"
+            DartCollection.reloadData()
         }
     }
 }

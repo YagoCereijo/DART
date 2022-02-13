@@ -6,23 +6,15 @@ import SpriteKit
 
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-    //Create the capture session
+    @IBOutlet weak var DartCollection: UICollectionView!
     @IBOutlet weak var CameraCapturePreview: UIView!
-    
     let captureSession = AVCaptureSession()
     let photoOutput = AVCapturePhotoOutput()
-    let imageView = UIImageView()
-    
     var sceneView:SKView!
     var cameraLayer:AVCaptureVideoPreviewLayer!
-    var rectangleList: [UIButton] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let size: CGFloat = (self.view.frame.width*0.9-20)
-        imageView.frame = CGRect(x: 10, y: 10, width: size, height: size)
-        imageView.layer.cornerRadius = size/2
-        imageView.clipsToBounds = true
         checkCameraPermission()
     }
     
@@ -38,6 +30,10 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         default: dismiss(animated: false)
         }
     }
+    
+    
+    
+    
     
     func setupCaptureSession(){
         if let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) {
@@ -62,10 +58,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             layer.backgroundColor = CGColor(red: 45/255, green: 41/255, blue: 38/255, alpha: 0.9)
             layer.cornerRadius = 10
             
-            
             CameraCapturePreview.layer.addSublayer(cameraLayer)
             CameraCapturePreview.layer.addSublayer(layer)
-            CameraCapturePreview.addSubview(imageView)
         
             let maskLayer = CAShapeLayer()
             maskLayer.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.9 , height: self.view.frame.width * 0.9)
@@ -90,6 +84,12 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
+    
+    
+    
+    
+    
+    
     @IBAction func TakePhoto(_ sender: Any) {
         let photoSettings = AVCapturePhotoSettings()
         if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
@@ -98,15 +98,21 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
+    
+    
+    
+    
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         let imageData = photo.fileDataRepresentation()!
         let image = UIImage(data: imageData)!
         let cropImage = cropToPreviewLayer(originalImage: image)!
-        //imageView.image = cropImage
-        imageView.contentMode = .scaleAspectFit
         modelPredict(cropImage.cgImage!)
     }
+    
+    
+    
     
     private func cropToPreviewLayer(originalImage: UIImage) -> UIImage? {
         
@@ -133,44 +139,48 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         return nil
     }
     
+    
+    
+    
     private func modelPredict(_ image: CGImage){
         
         let defaultConfig = MLModelConfiguration()
-        let dartModel = try? myModel(configuration: defaultConfig)
+        let dartModel:myModel
         let dartVNModel:VNCoreMLModel
-        
-        do{
-            dartVNModel = try VNCoreMLModel(for: dartModel!.model)
-        }catch{
-            fatalError("App failed to create a `VNCoreMLModel` instance.")
-        }
-        
-        var requests : [VNRequest] = []
+        let scorePredictorModel:scorePredictor
         let imageRequest = VNImageRequestHandler(cgImage: image, orientation: .right)
-        
-        let scorePredictorModel = scorePredictor()
+
+        do {
+            dartModel = try myModel(configuration: defaultConfig)
+            scorePredictorModel = try scorePredictor(configuration: defaultConfig)
+            dartVNModel = try VNCoreMLModel(for: dartModel.model)}
+        catch { fatalError("Error creating the score predictor model") }
         
         let dartDetectionRequest = VNCoreMLRequest(model: dartVNModel, completionHandler: { (request, error) in
             DispatchQueue.main.async(execute: {
-                // perform all the UI updates on the main queue
+                
                 if let results = request.results {
                     
+                    //Score parsing
                     var scoreResults:[String] = []
                     results.forEach{
                         let objectObservation = $0 as! VNRecognizedObjectObservation
                         let c = objectObservation.boundingBox
-                        
                         let scoreResult = try? scorePredictorModel.prediction(x: c.midX, y: 1-c.midY, width: c.width, height: c.height)
                         guard let namePosition = scoreResult?.result else {return}
                         scoreResults.append(self.resultPrint(x: Int(namePosition)))
                     }
-                    print(scoreResults)
-                    self.sceneView = SKView()
-                    let scene = DartSelectorScene(size: CGSize(width: self.CameraCapturePreview.frame.width*0.95, height: self.CameraCapturePreview.frame.height*0.95), results: scoreResults)
+        
+                    // Scene setup
+                    let scene = DartSelectorScene(size: CGSize(width: self.CameraCapturePreview.frame.width*0.95, height: self.CameraCapturePreview.frame.height*0.95), results: scoreResults, dartCollection: self.DartCollection)
                     scene.scaleMode = SKSceneScaleMode.resizeFill
                     scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                    self.sceneView.ignoresSiblingOrder = true
                     scene.backgroundColor = UIColor.clear
+                    
+                    //SceneView setup
+                    self.sceneView = SKView()
+                    self.sceneView.showsPhysics = true
+                    self.sceneView.ignoresSiblingOrder = true
                     self.sceneView.presentScene(scene)
                     self.sceneView.translatesAutoresizingMaskIntoConstraints = false
                     self.sceneView.clipsToBounds = true
@@ -186,34 +196,20 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             })
         })
         
-        requests.append(dartDetectionRequest)
         DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try imageRequest.perform(requests)
-            } catch let error as NSError {
-                print("Failed to perform image request: \(error)")
-                return
-            }
+            do { try imageRequest.perform([dartDetectionRequest])}
+            catch { fatalError("Failed to perform image request: \(error)")}
         }
     }
     
-   
     func resultPrint(x:Int)->String{
         let resultName = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "1 D", "2 D", "3 D", "4 D", "5 D", "6 D", "7 D", "8 D", "9 D", "10 D", "11 D", "12 D", "13 D", "14 D", "15 D", "16 D", "17 D", "18 D", "19 D", "20 D","1 T", "2 T", "3 T", "4 T", "5 T", "6 T", "7 T", "8 T", "9 T", "10 T", "11 T", "12 T", "13 T", "14 T", "15 T", "16 T", "17 T", "18 T", "19 T", "20 T","bullseye", "doubleBullseye"]
         
         return resultName[x]
     }
     
-    @objc func panButton(pan: UIPanGestureRecognizer) {
-        let button = pan.view as! UIButton
-        let location = pan.location(in: CameraCapturePreview) // get pan location
-        button.center = location // set button to where finger is
-    }
-    
     
     @IBAction func RemoveSamplePhoto(_ sender: Any) {
-        imageView.image = UIImage()
-        rectangleList.forEach{$0.removeFromSuperview()}
         self.sceneView.removeFromSuperview()
     }
     

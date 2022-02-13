@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -417,6 +418,51 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bnm-jJ-k9u">
+                                <rect key="frame" x="37.5" y="383" width="300" height="85.5"/>
+                                <color key="backgroundColor" red="0.89411771299999998" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Bnm-jJ-k9u" secondAttribute="height" multiplier="3.5:1" id="hbn-rI-rtf"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BLD-IJ-SWd">
+                                    <size key="itemSize" width="90" height="87"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="DartCell" id="U4o-wg-Ona" customClass="DartCell" customModule="DART" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DZd-eX-mTR">
+                                            <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDa-SJ-669">
+                                                    <rect key="frame" x="3.5" y="23.5" width="80" height="40"/>
+                                                    <fontDescription key="fontDescription" name="NTWagner" family="NT Wagner" pointSize="30"/>
+                                                    <color key="textColor" red="0.89411771299999998" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="aDa-SJ-669" firstAttribute="centerX" secondItem="DZd-eX-mTR" secondAttribute="centerX" id="Fhg-aU-jHO"/>
+                                                <constraint firstItem="aDa-SJ-669" firstAttribute="centerY" secondItem="DZd-eX-mTR" secondAttribute="centerY" id="Pig-Tj-nWZ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.1411764771" green="0.1294117719" blue="0.1215686351" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <size key="customSize" width="87" height="87"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="result" destination="aDa-SJ-669" id="XGa-eF-7jn"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IQR-0k-On6"/>
                         <color key="backgroundColor" red="0.89411771299999998" green="0.82745099070000006" blue="0.74117654560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -425,7 +471,10 @@
                             <constraint firstItem="Sxz-Xw-u3U" firstAttribute="top" secondItem="IQR-0k-On6" secondAttribute="top" constant="18" id="5aa-Xt-vDr"/>
                             <constraint firstItem="Sxz-Xw-u3U" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="EY2-ys-AIn"/>
                             <constraint firstItem="RkK-ii-WmK" firstAttribute="width" secondItem="3YT-aR-xZK" secondAttribute="width" multiplier="0.9" id="RVz-47-zF8"/>
+                            <constraint firstItem="Bnm-jJ-k9u" firstAttribute="top" secondItem="Sxz-Xw-u3U" secondAttribute="bottom" constant="27.5" id="RiS-oX-NS3"/>
+                            <constraint firstItem="Bnm-jJ-k9u" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="ajj-lW-Uld"/>
                             <constraint firstItem="RkK-ii-WmK" firstAttribute="centerX" secondItem="IQR-0k-On6" secondAttribute="centerX" id="c1x-Xl-0nX"/>
+                            <constraint firstItem="Bnm-jJ-k9u" firstAttribute="width" secondItem="3YT-aR-xZK" secondAttribute="width" multiplier="0.8" id="fJT-qn-GmL"/>
                             <constraint firstItem="RkK-ii-WmK" firstAttribute="height" secondItem="3YT-aR-xZK" secondAttribute="height" multiplier="0.15" id="w8T-3U-Fkh"/>
                             <constraint firstItem="IQR-0k-On6" firstAttribute="bottom" secondItem="RkK-ii-WmK" secondAttribute="bottom" constant="20" id="zoS-gR-5Tb"/>
                         </constraints>
@@ -433,6 +482,7 @@
                     <navigationItem key="navigationItem" id="yhs-Hq-ZwC"/>
                     <connections>
                         <outlet property="CameraCapturePreview" destination="Sxz-Xw-u3U" id="DEV-gN-bkE"/>
+                        <outlet property="DartCollection" destination="Bnm-jJ-k9u" id="AvJ-Yr-XuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQo-2a-S3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
