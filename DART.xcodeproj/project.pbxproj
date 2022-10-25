@@ -1,0 +1,567 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0716B35927B5294B00E52559 /* ScoreSelectorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0716B35827B5294B00E52559 /* ScoreSelectorScene.swift */; };
+		0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */; };
+		07C7493B271DA0BA007F8A3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C7493A271DA0BA007F8A3F /* AppDelegate.swift */; };
+		07C7493D271DA0BA007F8A3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C7493C271DA0BA007F8A3F /* SceneDelegate.swift */; };
+		07C7493F271DA0BA007F8A3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C7493E271DA0BA007F8A3F /* ViewController.swift */; };
+		07C74942271DA0BA007F8A3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C74940271DA0BA007F8A3F /* Main.storyboard */; };
+		07C74944271DA0BB007F8A3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C74943271DA0BB007F8A3F /* Assets.xcassets */; };
+		07C74947271DA0BB007F8A3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C74945271DA0BB007F8A3F /* LaunchScreen.storyboard */; };
+		07C74951271DA8A0007F8A3F /* GameSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C74950271DA8A0007F8A3F /* GameSettingsController.swift */; };
+		07D1113A271ED25300F34874 /* Controller01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D11139271ED25300F34874 /* Controller01.swift */; };
+		07D1113C271EDBF400F34874 /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1113B271EDBF300F34874 /* ScannerController.swift */; };
+		07DCD40A27B96B4100CC9B8D /* AddDartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DCD40927B96B4100CC9B8D /* AddDartCell.swift */; };
+		5CBA7180DE54342AE46EF800 /* Pods_DART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */; };
+		743EAA1B289FBC8300F29054 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743EAA1A289FBC8300F29054 /* ScannerView.swift */; };
+		743EAA1E28A1064F00F29054 /* ImageProcesing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743EAA1D28A1064F00F29054 /* ImageProcesing.swift */; };
+		745AE63A28A24F07004859D0 /* DartBoardScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745AE63928A24F07004859D0 /* DartBoardScannerController.swift */; };
+		745AE63D28A2D4EF004859D0 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745AE63C28A2D4EF004859D0 /* GameData.swift */; };
+		746DD72428C4A9E1004F0054 /* dart.scn in Resources */ = {isa = PBXBuildFile; fileRef = 746DD72328C4A9E1004F0054 /* dart.scn */; };
+		747F59CA28C7A6D5001ECF25 /* DartboardDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 747F59C928C7A6D5001ECF25 /* DartboardDetector.mlmodel */; };
+		74866B6028C7691900A4FF0A /* DartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74866B5F28C7691900A4FF0A /* DartCell.swift */; };
+		74A7570F28C6750D00BC86AE /* DartDetector.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 74A7570E28C6750D00BC86AE /* DartDetector.mlmodel */; };
+		74BCC81D28B9096C0097CF39 /* feather.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BCC81C28B9096C0097CF39 /* feather.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0716B35827B5294B00E52559 /* ScoreSelectorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSelectorScene.swift; sourceTree = "<group>"; };
+		0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NT Wagner.otf"; sourceTree = "<group>"; };
+		07C74937271DA0BA007F8A3F /* DART.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DART.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07C7493A271DA0BA007F8A3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07C7493C271DA0BA007F8A3F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		07C7493E271DA0BA007F8A3F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07C74941271DA0BA007F8A3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		07C74943271DA0BB007F8A3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07C74946271DA0BB007F8A3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		07C74948271DA0BB007F8A3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07C74950271DA8A0007F8A3F /* GameSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingsController.swift; sourceTree = "<group>"; };
+		07D11139271ED25300F34874 /* Controller01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller01.swift; sourceTree = "<group>"; };
+		07D1113B271EDBF300F34874 /* ScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
+		07DCD40927B96B4100CC9B8D /* AddDartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDartCell.swift; sourceTree = "<group>"; };
+		0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DART.debug.xcconfig"; path = "Target Support Files/Pods-DART/Pods-DART.debug.xcconfig"; sourceTree = "<group>"; };
+		139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		743EAA1A289FBC8300F29054 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		743EAA1D28A1064F00F29054 /* ImageProcesing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcesing.swift; sourceTree = "<group>"; };
+		745AE63928A24F07004859D0 /* DartBoardScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartBoardScannerController.swift; sourceTree = "<group>"; };
+		745AE63C28A2D4EF004859D0 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		746DD72328C4A9E1004F0054 /* dart.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = dart.scn; sourceTree = "<group>"; };
+		747F59C928C7A6D5001ECF25 /* DartboardDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DartboardDetector.mlmodel; sourceTree = "<group>"; };
+		74866B5F28C7691900A4FF0A /* DartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DartCell.swift; sourceTree = "<group>"; };
+		74A7570E28C6750D00BC86AE /* DartDetector.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DartDetector.mlmodel; sourceTree = "<group>"; };
+		74BCC81C28B9096C0097CF39 /* feather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feather.png; sourceTree = "<group>"; };
+		93BAC68E8D99418CAAADFDCE /* Pods-DART.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DART.release.xcconfig"; path = "Target Support Files/Pods-DART/Pods-DART.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07C74934271DA0BA007F8A3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CBA7180DE54342AE46EF800 /* Pods_DART.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0716B35A27B5295200E52559 /* DartSelector */ = {
+			isa = PBXGroup;
+			children = (
+				74866B5F28C7691900A4FF0A /* DartCell.swift */,
+				07DCD40927B96B4100CC9B8D /* AddDartCell.swift */,
+			);
+			path = DartSelector;
+			sourceTree = "<group>";
+		};
+		07C7492E271DA0BA007F8A3F = {
+			isa = PBXGroup;
+			children = (
+				07C74939271DA0BA007F8A3F /* DART */,
+				07C74938271DA0BA007F8A3F /* Products */,
+				EBD8AA5A99932B9A5833CDC4 /* Pods */,
+				F171F7251E2DAA4C0E96B2F4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		07C74938271DA0BA007F8A3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07C74937271DA0BA007F8A3F /* DART.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07C74939271DA0BA007F8A3F /* DART */ = {
+			isa = PBXGroup;
+			children = (
+				745AE63B28A2D49E004859D0 /* Model */,
+				743EAA1C28A1061D00F29054 /* Functions */,
+				743EAA19289FBC6A00F29054 /* View */,
+				07EC6D0927A7F16E006CB5BA /* ViewControllers */,
+				0716B35A27B5295200E52559 /* DartSelector */,
+				07EC6D0B27A7F18C006CB5BA /* Assets */,
+				07EC6D0A27A7F17D006CB5BA /* Storyboards */,
+				07EC6D0827A7F15A006CB5BA /* Delegates */,
+				07C74948271DA0BB007F8A3F /* Info.plist */,
+			);
+			path = DART;
+			sourceTree = "<group>";
+		};
+		07EC6D0827A7F15A006CB5BA /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				07C7493A271DA0BA007F8A3F /* AppDelegate.swift */,
+				07C7493C271DA0BA007F8A3F /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		07EC6D0927A7F16E006CB5BA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				07D1113B271EDBF300F34874 /* ScannerController.swift */,
+				07C7493E271DA0BA007F8A3F /* ViewController.swift */,
+				07C74950271DA8A0007F8A3F /* GameSettingsController.swift */,
+				07D11139271ED25300F34874 /* Controller01.swift */,
+				745AE63928A24F07004859D0 /* DartBoardScannerController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		07EC6D0A27A7F17D006CB5BA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				07C74940271DA0BA007F8A3F /* Main.storyboard */,
+				07C74945271DA0BB007F8A3F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		07EC6D0B27A7F18C006CB5BA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				746DD72328C4A9E1004F0054 /* dart.scn */,
+				74BCC81C28B9096C0097CF39 /* feather.png */,
+				747F59C928C7A6D5001ECF25 /* DartboardDetector.mlmodel */,
+				74A7570E28C6750D00BC86AE /* DartDetector.mlmodel */,
+				07C74943271DA0BB007F8A3F /* Assets.xcassets */,
+				0795AE2227A5AC4D003C0EDB /* NT Wagner.otf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		743EAA19289FBC6A00F29054 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0716B35827B5294B00E52559 /* ScoreSelectorScene.swift */,
+				743EAA1A289FBC8300F29054 /* ScannerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		743EAA1C28A1061D00F29054 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				743EAA1D28A1064F00F29054 /* ImageProcesing.swift */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		745AE63B28A2D49E004859D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				745AE63C28A2D4EF004859D0 /* GameData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EBD8AA5A99932B9A5833CDC4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */,
+				93BAC68E8D99418CAAADFDCE /* Pods-DART.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F171F7251E2DAA4C0E96B2F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				139B0DC5C4199E0EF2FA21B6 /* Pods_DART.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07C74936271DA0BA007F8A3F /* DART */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07C7494B271DA0BB007F8A3F /* Build configuration list for PBXNativeTarget "DART" */;
+			buildPhases = (
+				39A06063F70B385E47644E26 /* [CP] Check Pods Manifest.lock */,
+				07C74933271DA0BA007F8A3F /* Sources */,
+				07C74934271DA0BA007F8A3F /* Frameworks */,
+				07C74935271DA0BA007F8A3F /* Resources */,
+				667A351338909D8D7C486CDB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DART;
+			productName = DART;
+			productReference = 07C74937271DA0BA007F8A3F /* DART.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07C7492F271DA0BA007F8A3F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					07C74936271DA0BA007F8A3F = {
+						CreatedOnToolsVersion = 13.0;
+					};
+				};
+			};
+			buildConfigurationList = 07C74932271DA0BA007F8A3F /* Build configuration list for PBXProject "DART" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07C7492E271DA0BA007F8A3F;
+			productRefGroup = 07C74938271DA0BA007F8A3F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07C74936271DA0BA007F8A3F /* DART */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07C74935271DA0BA007F8A3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74BCC81D28B9096C0097CF39 /* feather.png in Resources */,
+				07C74947271DA0BB007F8A3F /* LaunchScreen.storyboard in Resources */,
+				07C74944271DA0BB007F8A3F /* Assets.xcassets in Resources */,
+				0795AE2327A5AC4D003C0EDB /* NT Wagner.otf in Resources */,
+				07C74942271DA0BA007F8A3F /* Main.storyboard in Resources */,
+				746DD72428C4A9E1004F0054 /* dart.scn in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39A06063F70B385E47644E26 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DART-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		667A351338909D8D7C486CDB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DART/Pods-DART-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DART/Pods-DART-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DART/Pods-DART-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07C74933271DA0BA007F8A3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0716B35927B5294B00E52559 /* ScoreSelectorScene.swift in Sources */,
+				743EAA1B289FBC8300F29054 /* ScannerView.swift in Sources */,
+				07D1113A271ED25300F34874 /* Controller01.swift in Sources */,
+				07D1113C271EDBF400F34874 /* ScannerController.swift in Sources */,
+				743EAA1E28A1064F00F29054 /* ImageProcesing.swift in Sources */,
+				745AE63A28A24F07004859D0 /* DartBoardScannerController.swift in Sources */,
+				07DCD40A27B96B4100CC9B8D /* AddDartCell.swift in Sources */,
+				07C7493F271DA0BA007F8A3F /* ViewController.swift in Sources */,
+				747F59CA28C7A6D5001ECF25 /* DartboardDetector.mlmodel in Sources */,
+				07C74951271DA8A0007F8A3F /* GameSettingsController.swift in Sources */,
+				74866B6028C7691900A4FF0A /* DartCell.swift in Sources */,
+				07C7493B271DA0BA007F8A3F /* AppDelegate.swift in Sources */,
+				74A7570F28C6750D00BC86AE /* DartDetector.mlmodel in Sources */,
+				745AE63D28A2D4EF004859D0 /* GameData.swift in Sources */,
+				07C7493D271DA0BA007F8A3F /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		07C74940271DA0BA007F8A3F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07C74941271DA0BA007F8A3F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		07C74945271DA0BB007F8A3F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07C74946271DA0BB007F8A3F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07C74949271DA0BB007F8A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		07C7494A271DA0BB007F8A3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07C7494C271DA0BB007F8A3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D70A31A0BBE229B3C24AB2C /* Pods-DART.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LV95P3RCRA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DART/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = es.usal.fis.DART;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		07C7494D271DA0BB007F8A3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93BAC68E8D99418CAAADFDCE /* Pods-DART.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = LV95P3RCRA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DART/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = es.usal.fis.DART;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07C74932271DA0BA007F8A3F /* Build configuration list for PBXProject "DART" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07C74949271DA0BB007F8A3F /* Debug */,
+				07C7494A271DA0BB007F8A3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07C7494B271DA0BB007F8A3F /* Build configuration list for PBXNativeTarget "DART" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07C7494C271DA0BB007F8A3F /* Debug */,
+				07C7494D271DA0BB007F8A3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07C7492F271DA0BA007F8A3F /* Project object */;
+}
